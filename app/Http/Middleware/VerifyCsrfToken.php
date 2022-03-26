@@ -19,6 +19,10 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        'membership/paypal_ipn',
+		'client/paypal_ipn',
+		'live_chat/auth',
+        'membership/netopia_ipn',
+        'recurring-payment/netopia/ipn',
     ];
 }
