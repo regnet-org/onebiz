@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $language = array();
 
@@ -1164,7 +1164,6 @@ $language["You have cancelled the subscription"] = "Abonament anulat";
 $language["The payment has been failed. Please contact us to resolve this issue."] = "Plata esuata. Va rugam sa ne contactati.";
 $language["Thank you for your payment"] = "Multumim pentru efectuarea platii";
 $language["External"] = "External";
-$language["Recurring payments"] = "Recurring payments";
 $language["RegComert Link"] = "Reg. Comertului";
 $language["RegComert Form Title"] = "Înregistrați Online orice operațiune la Registrul Comerțului";
 $language["RegComert Form Subtitle"] = "Completati datele dvs. mai jos si vom reveni catre dvs.";
@@ -1185,3 +1184,11 @@ $language["Export"] = "Export";
 $language["Next Step"] = "Next Step";
 $language["Remove me from this company"] = "Sterge acesta companie";
 $language["Do you want to stop collaboration with this company"] = "Doriti inrerupea colaborarii cu aceasta companie";
+$language["Attempts"] = "Incercari";
+$language["Orders"] = "Comenzi";
+$language["Client Name"] = "Nume client";
+$language["Created order date"] = "Data creare comanda";
+$language["Payment order date"] = "Data plata comanda";
+$language["Payment status"] = "Status comanda";
+$language["Apply filters"] = "Aplica filtrele";
+$language["Client Status"] = "Status client";

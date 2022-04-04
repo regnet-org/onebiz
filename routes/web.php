@@ -97,6 +97,8 @@ Route::group(['middleware' => ['install']], function () {
 				Route::get('client/order/status/disable/{clientid}','RecurringPayment\ClientController@disable');
 				Route::get('client/order/status/enable/{clientid}','RecurringPayment\ClientController@enable');
 				Route::get('client/orders/{clientid}','RecurringPayment\OrderController@index')->name('recurringpayment.client.orders');
+                Route::match(['get', 'post'],'client/orders','RecurringPayment\OrdersController@index')->name('recurringpayment.client.orders');
+                Route::get('client/filters/{status}','RecurringPayment\OrdersController@clientNameFilters')->name('recurringpayment.client.orders');
 		    });
 
 		});
