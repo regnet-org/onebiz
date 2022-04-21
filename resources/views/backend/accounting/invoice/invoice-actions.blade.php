@@ -2,6 +2,7 @@
 <div>
 	<a class="btn btn-dark btn-xs" href="javascript:void(0);" id="copy_link"><i class="far fa-copy"></i> {{ _lang('Copy Inovice Link') }}</a>
 	<a class="btn btn-primary btn-xs print" href="#" data-print="invoice-view"><i class="fas fa-print"></i> {{ _lang('Print') }}</a>
+	<a class="btn btn-danger btn-xs" href="{{ url('invoices/preview_pdf/'.encrypt($invoice->id)) }}" target="_blank"><i class="fas fa-file-pdf"></i> {{ _lang('Preview PDF') }}</a>
 	<a class="btn btn-danger btn-xs" href="{{ url('invoices/download_pdf/'.encrypt($invoice->id)) }}"><i class="fas fa-file-pdf"></i> {{ _lang('Export PDF') }}</a>
 	<a class="btn btn-secondary btn-xs ajax-modal" data-title="{{ _lang('Send Email') }}" href="{{ url('invoices/create_email/'.$invoice->id) }}"><i class="fas fa-envelope-open-text"></i> {{ _lang('Send Email') }}</a>
 	@if($invoice->status == 'Unpaid' || $invoice->status == 'Partially_Paid' )
@@ -15,7 +16,8 @@
 		<a class="btn btn-info btn-xs" href="{{ route('invoices.mark_as_cancelled',$invoice->id) }}"><i class="fas fa-times"></i> {{ _lang('Mark As Cancelled') }}</a>
 	@endif
 
-	
+	@if(\Carbon\Carbon::parse($invoice->invoice_date)->format('Y-m') == date('Y-m')) 
 	<a class="btn btn-warning btn-xs" href="{{ action('InvoiceController@edit', $invoice->id) }}"><i class="fas fa-edit"></i> {{ _lang('Edit') }}</a>
+	@endif
 </div>
 	

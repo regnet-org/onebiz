@@ -198,8 +198,11 @@
 						</div>
 				
 						<div class="col-md-12">
-							<div class="form-group">
+							<div class="form-group"> 
+								{{-- only the current month created invoice can be updated--}}
+								@if(\Carbon\Carbon::parse($invoice->invoice_date)->format('Y-m') == date('Y-m')) 
 								<button type="submit" class="btn btn-primary">{{ _lang('Update') }}</button>
+								@endif
 							</div>
 						</div>
 					</div>

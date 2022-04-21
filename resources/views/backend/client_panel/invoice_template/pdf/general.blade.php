@@ -91,9 +91,9 @@
 						<td colspan="2">
 							<div class="invoice-col-6 pt-3">
 								<h5><b>{{ _lang('Invoice To') }}</b></h5>	
+								{!! $client->company_name != '' ? clean($client->company_name).'<br>' : '' !!}
 								{{ $client->contact_name }}<br>
 								{{ $client->contact_email }}<br>
-								{!! $client->company_name != '' ? clean($client->company_name).'<br>' : '' !!}
 								{!! $client->address != '' ? clean($client->address).'<br>' : '' !!}
 								{!! $client->vat_id != '' ? _lang('VAT ID').': '.clean($client->vat_id).'<br>' : '' !!}
 								{!! $client->reg_no != '' ? _lang('REG NO').': '.clean($client->reg_no).'<br>' : '' !!}    
@@ -109,8 +109,13 @@
 									{{ get_company_field($invoice->company_id,'email') }}<br>
 									{!! get_company_field($invoice->company_id,'vat_id') != '' ? _lang('VAT ID').': '.clean(get_company_field($invoice->company_id,'vat_id')).'<br>' : '' !!}
 									{!! get_company_field($invoice->company_id,'reg_no')!= '' ? _lang('REG NO').': '.clean(get_company_field($invoice->company_id,'reg_no')).'<br>' : '' !!}
+									{!! get_company_field($invoice->company_id,'cod_vies')!= '' ? _lang('COD VIES').': '.clean(get_company_field($invoice->company_id,'cod_vies')).'<br>' : '' !!}
 									{!! get_company_field($invoice->company_id,'iban')!= '' ? _lang('Bank Account').': '.clean(get_company_field($invoice->company_id,'iban')).'<br>' : '' !!}
 									{!! get_company_field($invoice->company_id,'bank_name')!= '' ? _lang('Bank Name').': '.clean(get_company_field($invoice->company_id,'bank_name')).'<br>' : '' !!}
+									@for ($i = 2; $i <= 5;  $i++)															
+										{!! get_company_field($invoice->company_id,'iban'.$i)!= '' ? _lang('Bank Account').' '.$i.': '.clean(get_company_field($invoice->company_id,'iban'.$i)).'<br>' : '' !!}
+										{!! get_company_field($invoice->company_id,'bank_name'.$i)!= '' ? _lang('Bank Name').' '.$i.': '.clean(get_company_field($invoice->company_id,'bank_name'.$i)).'<br>' : '' !!}
+										@endfor
 									<!--Invoice Payment Information-->
 									<h5>{{ _lang('Invoice Total') }}: {{ decimalPlace($invoice->grand_total, $currency) }}</h5>
 									@if($client_currency != $base_currency)
@@ -254,6 +259,7 @@
 		 @endif
 		 <!--End Footer Text-->
 		 
+		 @include('backend.pdf-footer')
 	</div>
 </body>
 </html>

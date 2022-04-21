@@ -92,8 +92,13 @@
 										{{ get_company_field($quotation->company_id,'email') }}<br>
 										{!! get_company_field($quotation->company_id,'vat_id') != '' ? _lang('VAT ID').': '.clean(get_company_field($quotation->company_id,'vat_id')).'<br>' : '' !!}
 										{!! get_company_field($quotation->company_id,'reg_no')!= '' ? _lang('REG NO').': '.clean(get_company_field($quotation->company_id,'reg_no')).'<br>' : '' !!}
+										{!! get_company_field($quotation->company_id,'cod_vies')!= '' ? _lang('COD VIES').': '.clean(get_company_field($quotation->company_id,'cod_vies')).'<br>' : '' !!}
 										{!! get_company_field($quotation->company_id,'iban')!= '' ? _lang('Bank Account').': '.clean(get_company_field($quotation->company_id,'iban')).'<br>' : '' !!}
 														{!! get_company_field($quotation->company_id,'bank_name')!= '' ? _lang('Bank Name').': '.clean(get_company_field($quotation->company_id,'bank_name')).'<br>' : '' !!}
+											@for ($i = 2; $i <= 5;  $i++)															
+											{!! get_company_field($quotation->company_id,'iban'.$i)!= '' ? _lang('Bank Account').' '.$i.': '.clean(get_company_field($quotation->company_id,'iban'.$i)).'<br>' : '' !!}
+											{!! get_company_field($quotation->company_id,'bank_name'.$i)!= '' ? _lang('Bank Name').' '.$i.': '.clean(get_company_field($quotation->company_id,'bank_name'.$i)).'<br>' : '' !!}
+											@endfor				
 										</div>
 									</td>
 									<td class="text-right">
@@ -110,18 +115,18 @@
 						<div class="invoice-col-6 pt-3">
 							<h5><b>{{ _lang('Quotation To') }}</b></h5>
 							@if($quotation->related_to == 'contacts' && isset($quotation->client))
+								 {!! $quotation->client->company_name != '' ? clean($quotation->client->company_name).'<br>' : '' !!}
 								 {{ $quotation->client->contact_name }}<br>
 								 {{ $quotation->client->contact_email }}<br>
-								 {!! $quotation->client->company_name != '' ? clean($quotation->client->company_name).'<br>' : '' !!}
 								 {!! $quotation->client->address != '' ? clean($quotation->client->address).'<br>' : '' !!}
 								 {!! $quotation->client->vat_id != '' ? _lang('VAT ID').': '.clean($quotation->client->vat_id).'<br>' : '' !!}
 								 {!! $quotation->client->reg_no != '' ? _lang('REG NO').': '.clean($quotation->client->reg_no).'<br>' : '' !!}
 								 	 {!! $quotation->client->iban != '' ? _lang('Bank Account').': '.clean($quotation->client->iban).'<br>' : '' !!}      
 											 			{!! $quotation->client->bank_name != '' ? _lang('Bank Name').': '.clean($quotation->client->bank_name).'<br>' : '' !!}  
 							 @elseif($quotation->related_to == 'leads' && isset($quotation->lead))	 
+								 {!! $quotation->lead->company_name != '' ? clean($quotation->lead->company_name).'<br>' : '' !!}
 								 {{ $quotation->lead->name }}<br>
 								 {{ $quotation->lead->email }}<br>
-								 {!! $quotation->lead->company_name != '' ? clean($quotation->lead->company_name).'<br>' : '' !!}
 								 {!! $quotation->lead->address != '' ? clean($quotation->lead->address).'<br>' : '' !!}
 								 {!! $quotation->lead->vat_id != '' ? _lang('VAT ID').': '.clean($quotation->lead->vat_id).'<br>' : '' !!}
 								 {!! $quotation->lead->reg_no != '' ? _lang('REG NO').': '.clean($quotation->lead->reg_no).'<br>' : '' !!}
@@ -236,6 +241,7 @@
 		</div> 
 	 @endif
 	 <!--End Quotation Note-->
+	 @include('backend.pdf-footer')
 </div>
 
 </body>

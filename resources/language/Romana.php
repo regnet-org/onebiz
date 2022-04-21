@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 $language = array();
 
@@ -1148,10 +1148,10 @@ $language["Netopia Plati Recurente Active"] = "Netopia Plati Recurente Active";
 $language["Netopia Plati Recurente Testmode"] = "Netopia Plati Recurente Testmode";
 $language["API username"] = "API username";
 $language["API password"] = "API password";
-$language["Client Name"] = "Client Name";
+$language["Client Name"] = "Nume client";
 $language["Create Order"] = "Create Order";
 $language["Payment date"] = "Payment date";
-$language["Payment status"] = "Payment status";
+$language["Payment status"] = "Status comanda";
 $language["Period"] = "Period";
 $language["phone"] = "phone";
 $language["Netopia recurrent payment is inactive"] = "Netopia recurrent payment is inactive";
@@ -1186,9 +1186,15 @@ $language["Remove me from this company"] = "Sterge acesta companie";
 $language["Do you want to stop collaboration with this company"] = "Doriti inrerupea colaborarii cu aceasta companie";
 $language["Attempts"] = "Incercari";
 $language["Orders"] = "Comenzi";
-$language["Client Name"] = "Nume client";
 $language["Created order date"] = "Data creare comanda";
 $language["Payment order date"] = "Data plata comanda";
-$language["Payment status"] = "Status comanda";
 $language["Apply filters"] = "Aplica filtrele";
 $language["Client Status"] = "Status client";
+$language["Factura fara semnatura"] = "Factura este valabila fara semnatura si stampila, conform art. 319 alin. 29 din legea 227/2015";
+$language["Recurring payments"] = "Recurring payments";
+$language["Trimite email de confirmare la incasare"] = "Trimite email de confirmare la incasare";
+$language["Card issue clients"] = "Card issue clients";
+$language["All clients"] = "All clients";
+$language["monthly"] = "monthly";
+$language["Total to paid now"] = "Total to paid now";
+$language["COD VIES"] = "COD VIES";

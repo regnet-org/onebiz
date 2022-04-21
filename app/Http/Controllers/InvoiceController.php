@@ -164,7 +164,10 @@ class InvoiceController extends Controller
 										.'<button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-toggle="dropdown">'._lang('Action')
 										.'&nbsp;<i class="fas fa-angle-down"></i></button>'
 										.'<div class="dropdown-menu">';
-								$ddlinks .= '<a class="dropdown-item" href="'. action('InvoiceController@edit', $invoice->id) .'"><i class="fas fa-edit"></i> '._lang('Edit') .'</a>';
+								if(\Carbon\Carbon::parse($invoice->invoice_date)->format('Y-m') == date('Y-m')) 		
+								{		
+									$ddlinks .= '<a class="dropdown-item" href="'. action('InvoiceController@edit', $invoice->id) .'"><i class="fas fa-edit"></i> '._lang('Edit') .'</a>';
+								}
 								$ddlinks .= '<a class="dropdown-item" href="'. action('InvoiceController@show', $invoice->id) .'" data-title="'._lang('View Invoice') .'" data-fullscreen="true"><i class="fas fa-eye"></i> '._lang('View') .'</a>';
 
 							if($invoice->status != 'Storno')
@@ -173,11 +176,13 @@ class InvoiceController extends Controller
 											.'<a href="'. url('invoices/view_payment/'.$invoice->id) .'" data-title="'. _lang('View Payment') .'" data-fullscreen="true" class="dropdown-item ajax-modal"><i class="fas fa-credit-card"></i> '. _lang('View Payment') .'</a>';
 							}				
 								$ddlinks .= $addaction;
+								/*
 								$ddlinks .= '<form action="'. action('InvoiceController@destroy', $invoice['id']) .'" method="post">'								
 													.csrf_field()
 													.'<input name="_method" type="hidden" value="DELETE">'
 													.'<button class="button-link btn-remove" type="submit"><i class="fas fa-recycle"></i> '._lang('Delete') .'</button>'
 												.'</form>';	
+								*/				
 								$ddlinks .= '</div>'
 										.'</div>';
 							return $ddlinks;			
@@ -424,6 +429,36 @@ class InvoiceController extends Controller
 		//return $pdf->stream();
 		return $pdf->download("invoice_{$invoice->invoice_number}.pdf");
 
+    }
+
+    public function preview_pdf(Request $request, $id)
+    {
+		@ini_set('max_execution_time', 0);
+	    @set_time_limit(0);
+		
+		$id = decrypt($id);
+	
+		$invoice = Invoice::where("id",$id)->where("company_id",company_id())->first();
+		$data['invoice'] = $invoice;
+		$data['transactions'] = Transaction::where("invoice_id",$id)
+								   ->where("company_id",company_id())->get();
+		$data['company'] = CompanySetting::where('company_id',$data['invoice']->company_id)->get();
+		
+        $template = $data['invoice']->template;
+		if($template == ""){
+			$template = "modern";
+		}
+
+		if(! file_exists(resource_path("views/backend/accounting/invoice/template/$template.blade.php"))){
+        	//$data['template'] = InvoiceTemplate::where('id',5)
+        	                                   //->where('company_id',company_id())
+        	                                   //->first();
+        	$template = 'modern';                             
+        }
+				
+		$pdf = PDF::loadView("backend.client_panel.invoice_template.pdf.$template", $data);
+		$pdf->setWarnings(false);
+		return $pdf->stream();
     }
 
     /**

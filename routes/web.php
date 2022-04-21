@@ -258,7 +258,7 @@ Route::group(['middleware' => ['install']], function () {
 			Route::resource('file_manager','FileManagerController');
 
 			Route::get('file_manager/download/{id}','FileManagerController@downloadFile')->name('file_manager.download');
-
+            Route::get('file_manager/download-all/{id}','FileManagerController@downloadAll')->name('file_manager.download.all');
 
 			//Company Settings Controller
 			Route::post('company/upload_logo', 'CompanySettingsController@upload_logo')->name('company.change_logo');
@@ -397,7 +397,9 @@ Route::group(['middleware' => ['install']], function () {
 	//Invoice & Quotation PDF Download
 	Route::get('invoices/download_pdf/{id}','InvoiceController@download_pdf');
 	Route::get('quotations/download_pdf/{id}','QuotationController@download_pdf');
-
+    
+    Route::get('invoices/preview_pdf/{id}','InvoiceController@preview_pdf');
+    Route::get('quotations/preview_pdf/{id}','QuotationController@preview_pdf');
 
 
 });

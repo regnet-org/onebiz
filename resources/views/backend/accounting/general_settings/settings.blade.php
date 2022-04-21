@@ -45,6 +45,23 @@
 							  </div>
 							</div>
 
+							@for ($i = 2; $i <= 5; $i++)
+							<div class="col-md-6">
+							  <div class="form-group">
+								<label class="control-label">{{ _lang('Bank Account') }} {{ $i }} </label>						
+								<input type="text" class="form-control" name="iban{{ $i }}" value="{{ get_company_option('iban'.$i) }}">
+							  </div>
+							</div>
+							<div class="col-md-6">
+							  <div class="form-group">
+								<label class="control-label">{{ _lang('Bank Name') }} {{ $i }}</label>						
+								<input type="text" class="form-control" name="bank_name{{ $i }}" value="{{ get_company_option('bank_name'.$i) }}">
+							  </div>
+							</div>
+							@endfor
+
+
+
 							<div class="col-md-6">
 							  <div class="form-group">
 								<label class="control-label">{{ _lang('Phone') }}</label>						
@@ -65,6 +82,14 @@
 								<input type="text" class="form-control" name="reg_no" value="{{ get_company_option('reg_no') }}">
 							  </div>
 							</div>
+
+							<div class="col-md-6">
+							  <div class="form-group">
+								<label class="control-label">{{ _lang('COD VIES') }}</label>						
+								<input type="text" class="form-control" name="cod_vies" value="{{ get_company_option('cod_vies') }}">
+							  </div>
+							</div>
+							
 							
 							<div class="col-md-6">
 							  <div class="form-group">
