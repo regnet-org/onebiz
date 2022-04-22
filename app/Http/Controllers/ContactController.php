@@ -169,10 +169,10 @@ class ContactController extends Controller
     {	
 		$validator = Validator::make($request->all(), [
 			'profile_type'  => 'required|max:20',
-			'company_name'  => 'nullable|max:50',
+			'company_name'  => 'required|max:50',
 			// 'contact_name'  => 'required|max:50',
 			'contact_email' => [
-                'required',
+                'nullable',
                 'email',
                 Rule::unique('contacts')->where('company_id',company_id()),
             ],
@@ -365,10 +365,10 @@ class ContactController extends Controller
 		
 		$validator = Validator::make($request->all(), [
 			'profile_type' => 'required|max:20',
-			'company_name' => 'nullable|max:50',
+			'company_name' => 'required|max:50',
 			// 'contact_name' => 'required|max:50',
 			'contact_email' => [
-                'required',
+                'nullable',
                 'email',
                 Rule::unique('contacts')->where('company_id',company_id())->ignore($contact->id),
             ],

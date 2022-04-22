@@ -34,6 +34,7 @@ class Select2Controller extends Controller
         $value = $request->get('value');
         $display = $request->get('display');
         $display2 = $request->get('display2');
+        $customdisplay = $request->get('display') ? $request->get('display') : $request->get('customdisplay');
         $where = $request->get('where');
 		
         $q = $request->get('q');
@@ -41,6 +42,10 @@ class Select2Controller extends Controller
 	    $display_option = "$display as text";
 		if($display2 != ''){
 			$display_option = "CONCAT($display,' - ',$display2) AS text";
+		}
+
+		if($customdisplay != ''){
+			$display_option = "$customdisplay AS text";
 		}
 		
 	   

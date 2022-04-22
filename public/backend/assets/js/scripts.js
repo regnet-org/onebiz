@@ -379,7 +379,7 @@ $('.dropify').dropify({
 	
 			$(this).select2({
 			  ajax: {
-				url: _url + '/ajax/get_table_data?table=' + $(this).data('table') + '&value=' + $(this).data('value') + '&display=' + $(this).data('display') + display2 + '&where=' +$(this).data('where'),
+				url: _url + '/ajax/get_table_data?table=' + $(this).data('table') + '&value=' + $(this).data('value') + '&display=' + $(this).data('display')+ '&customdisplay=' + $(this).data('customdisplay') + display2 + '&where=' +$(this).data('where'),
 				processResults: function (data) {
 				  return {
 					results: data

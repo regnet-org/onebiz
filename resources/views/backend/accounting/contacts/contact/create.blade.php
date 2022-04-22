@@ -33,7 +33,7 @@
 				<div class="col-md-6">
 				  <div class="form-group">
 					<label class="control-label">{{ _lang('Company Name') }}</label>						
-					<input type="text" class="form-control" name="company_name" id="company_name" value="{{ old('company_name') }}">
+					<input type="text" class="form-control" name="company_name" id="company_name" value="{{ old('company_name') }}" required>
 				  </div>
 				</div>
 

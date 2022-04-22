@@ -28,7 +28,7 @@
 							<div class="col-md-6">
 							 <div class="form-group">
 								<label class="control-label">{{ _lang('Company Name') }}</label>						
-								<input type="text" class="form-control" name="company_name" value="{{ $contact->company_name }}">
+								<input type="text" class="form-control" name="company_name" value="{{ $contact->company_name }}" required>
 							 </div>
 							</div>
 

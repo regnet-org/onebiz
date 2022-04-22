@@ -34,7 +34,7 @@
 							<div class="form-group">
 								<a href="{{ route('contacts.create') }}" data-reload="false" data-title="{{ _lang('Add Client') }}" class="ajax-modal select2-add"><i class="ti-plus"></i> {{ _lang('Add New') }}</a>
 								<label class="control-label">{{ _lang('Select Client') }}</label>						
-								<select class="form-control select2-ajax" data-value="id" data-display="contact_name" data-table="contacts" data-where="1" name="client_id" id="client_id">
+								<select class="form-control select2-ajax" data-value="id" data-display="company_name" data-customdisplay="contact_name" data-table="contacts" data-where="1" name="client_id" id="client_id">
 									<option value="">{{ _lang('Select One') }}</option>
 									{{ create_option("contacts","id","contact_name", $invoice->related_id, array("company_id="=>company_id())) }}
 								</select>
