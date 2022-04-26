@@ -239,7 +239,7 @@ class ContactController extends Controller
 	    $contact->profile_type = $request->input('profile_type');
 		$contact->company_name = $request->input('company_name');
 		$contact->contact_name = $request->input('contact_name') ?? '';
-		$contact->contact_email = $request->input('contact_email');
+		$contact->contact_email = $request->input('contact_email') ?? '';
 		$contact->vat_id = $request->input('vat_id');
 		$contact->reg_no = $request->input('reg_no');
 		$contact->contact_phone = $request->input('contact_phone');
