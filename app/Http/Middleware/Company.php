@@ -29,7 +29,7 @@ class Company
 				$route_name='quotations.show';
 
 			/** If User Type = Staff **/
-			if( $route_name != '' && $route_name != 'file_manager.download.all' && $user_type != 'user'){
+			if( $route_name != '' && $route_name != 'file_manager.download.all' && $user_type != 'user' && $route_name != 'file_manager.preview'){
 				if($route_name=='file_manager.search')
 					$route_name = 'file_manager.index';
 				if(explode(".",$route_name)[1] == "update"){

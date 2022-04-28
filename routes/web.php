@@ -259,6 +259,7 @@ Route::group(['middleware' => ['install']], function () {
 
 			Route::get('file_manager/download/{id}','FileManagerController@downloadFile')->name('file_manager.download');
             Route::get('file_manager/download-all/{id}','FileManagerController@downloadAll')->name('file_manager.download.all');
+			Route::get('file_manager/preview/{id}','FileManagerController@previewFile')->name('file_manager.preview');
 
 			//Company Settings Controller
 			Route::post('company/upload_logo', 'CompanySettingsController@upload_logo')->name('company.change_logo');

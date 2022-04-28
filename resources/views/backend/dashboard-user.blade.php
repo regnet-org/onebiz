@@ -271,7 +271,7 @@ $date_format = get_company_option('date_format','Y-m-d');
 </div>
 @endsection
 
-@include('backend.popupvideo');
+@include('backend.popupvideo')
 
 @section('js-script')
 <script src="{{ asset('public/backend/assets/js/dashboard.js?v=1.1') }}"></script>

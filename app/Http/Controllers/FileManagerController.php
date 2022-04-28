@@ -772,7 +772,7 @@ class FileManagerController extends Controller
                     $ret =  buildCategories($categories, $cat_id, $ret);
                 } else {
                     if($categories['valid'][$cat_id])
-                        $ret[]  = $categories['all_categories'][$cat_id]['name'];
+                        $ret[]  = $categories['all_categories'][$cat_id]['file'];
                 }
             }
 
@@ -819,6 +819,40 @@ class FileManagerController extends Controller
                 $permission->staff_company_id = company_id();
                 $permission->save();
             }
+        }
+    }
+
+    public function previewFile($id){
+        
+        $users_has_access = \App\User::select('id')->where("user_type","staff")
+                     ->Where("company_ids",'like', '%|'.company_id().'|%')
+                     ->orderBy("id","desc")->get()->keyBy('id')->keys()->toArray();
+
+        $filemanager = FileManager::where("id",$id)->whereIn("company_id",[0, company_id()])
+            ->where(function($query) use ($users_has_access){
+                $query->where("created_by", Auth::user()->id);
+                if(in_array(Auth::user()->id, $users_has_access)) {
+                    $query->orWhereRaw("1 = 1");
+                } elseif(count($users_has_access)) {
+                    $query->orWhereIn("created_by", $users_has_access);
+                }
+                $query->orWhere("created_by", "=", 0);
+             })->first();
+
+        if($filemanager)
+        {
+            $file_name = $filemanager->file;
+            $file = storage_path().'/uploads/file_manager/'.$file_name;
+            
+
+            if(File::exists($file))
+            {
+                return response()->file($file);
+            }
+        }
+        else
+        {
+            return redirect()->back();
         }
     }
     

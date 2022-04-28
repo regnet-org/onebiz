@@ -90,6 +90,7 @@
 										<a href="{{ action('FileManagerController@edit', $filemanager['id']) }}" data-title="{{ _lang('Update File') }}" class="ajax-modal dropdown-item"><i class="far fa-edit"></i> {{ _lang('Edit') }}</a></li>
 									@endif
 									<a class="dropdown-item" href="{{ route('file_manager.download', $filemanager['id']) }}" target="_blank"><i class="fas fa-cloud-download-alt"></i> {{ _lang('Download') }}</a></li>
+									 <a class="dropdown-item" href="{{ route('file_manager.preview', $filemanager['id']) }}"><i class="fas fa-binoculars"></i> {{ _lang('View') }}</a></li>
 								@else
 									<a href="{{ action('FileManagerController@edit_folder', $filemanager['id']) }}" data-title="{{ _lang('Update Folder') }}" class="ajax-modal dropdown-item"><i class="far fa-edit"></i> {{ _lang('Edit') }}</a></li>
 									<a class="dropdown-item" href="{{ route('file_manager.download.all', $filemanager['id']) }}" target="_blank"><i class="fas fa-cloud-download-alt"></i> {{ _lang('Download All') }}</a></li>
